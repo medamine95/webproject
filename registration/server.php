@@ -41,6 +41,7 @@ if (isset($_POST['register'])){
         array_push($errors,"Entrez votre prenom !");
 
     }
+    
 
     if(count($errors)==0){
         $password=md5($password);
