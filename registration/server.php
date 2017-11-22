@@ -42,7 +42,6 @@ if (isset($_POST['register'])){
 
     }
     
-
     if(count($errors)==0){
         $password=md5($password);
         $sql="INSERT INTO users(nom,prenom,email,login,pwd) VALUES(:nom,:prenom,:email,:login,:password)";
