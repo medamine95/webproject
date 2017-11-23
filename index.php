@@ -3,7 +3,6 @@
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>HOME</h1>    
+<h1>HOME</h1>
 
 <div>
     <?php if(isset($_SESSION['sucess'])): ?>
@@ -40,7 +39,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
     <p>Welcome </p> <strong> <php? echo $_SESSION['login'] ; ? > </strong>
     <p><a href="" style="color:red;">Logout</a></p>
 
-    
+
     <?php endif ?>
 
 </div>
