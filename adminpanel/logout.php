@@ -2,8 +2,9 @@
 session_start();
 session_destroy();
 $path=$_SERVER['DOCUMENT_ROOT'];
-echo "<h2>Logged Out</h2>";
-header('login.php');
+echo "<h2>Logged out you gonna be redireicted to the main page in 3 seconds ..</h2>";
+header("refresh:3;url=../index.php");
+
 
 ?>
 
