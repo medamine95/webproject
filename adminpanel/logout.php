@@ -3,7 +3,7 @@ session_start();
 session_destroy();
 $path=$_SERVER['DOCUMENT_ROOT'];
 echo "<h2>Logged Out</h2>";
-
+header('login.php');
 
 ?>
 
