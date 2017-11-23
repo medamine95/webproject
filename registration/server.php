@@ -6,7 +6,7 @@ $errors = array();
 
 $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
 
-//si le button register est cliqué 
+//si le button est cliqué 
 
 if (isset($_POST['register'])){
     $nom=$_POST['nom'];
@@ -14,6 +14,9 @@ if (isset($_POST['register'])){
     $email=$_POST['email'];
     $login=$_POST['login'];
     $password=$_POST['password'];
+    
+
+    
 
     //validation 
     if(empty($login))
