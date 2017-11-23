@@ -24,7 +24,6 @@ if(count($errors)==0){
     $results = $records->fetch(PDO::FETCH_ASSOC);
     if(count($results) > 0 && $passworda==$results['pwd']){
         $_SESSION['logina'] = $results['login'];
-        session_start();
         header('location:index.php');
         exit;
     }else{

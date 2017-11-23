@@ -1,6 +1,5 @@
 <?php
-
-
+session_start();
 	echo "<h3>Welcome :" .$_SESSION['logina'] ."</h3>";
 ?>
 
