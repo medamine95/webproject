@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2017 at 10:25 PM
+-- Generation Time: Nov 23, 2017 at 09:10 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -21,6 +21,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `registartion`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `login` varchar(20) NOT NULL,
+  `pwd` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`login`, `pwd`) VALUES
+('admin', 'bb0f7e021d52a4e31613d463fc0525d8');
 
 -- --------------------------------------------------------
 
@@ -49,6 +67,12 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `login`, `pwd`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`login`);
 
 --
 -- Indexes for table `users`
