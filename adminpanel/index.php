@@ -1,8 +1,14 @@
 <?php
 
 try{
- 
+ //demarage de la session
 session_start();
+//control de panel admin avec login obligatoire (pas de session pas d'accés)
+if (empty($_SESSION["logina"]))
+{
+  header("location:../index.php");
+  exit;
+}
 	
 }
 catch(Exception $e){
