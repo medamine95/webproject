@@ -1,7 +1,5 @@
 <?php
 include('server.php');
-//mnathem
-
 ?>
 
 
