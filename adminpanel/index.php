@@ -1,6 +1,14 @@
 <?php
+
+try{
+ 
 session_start();
 	echo "<h3>Welcome :" .$_SESSION['logina'] ."</h3>";
+	echo "<a href='logout.php'>Logout</a>";
+}
+catch(Exception $e){
+    echo "Session expired. " . $e->getMessage();
+}
 ?>
 
 
