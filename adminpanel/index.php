@@ -186,11 +186,7 @@ desired effect
 
     <div class="box-body table-responsive no-padding">
               <table border="2px" class="table table-striped">
-      <?php        foreach ($users as $user) {
-
-
-
-       ?>
+     
                 <tbody><tr>
                
                   <th>User</th>
@@ -198,6 +194,7 @@ desired effect
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+                <?php  foreach ($users as $user) {    ?>
                 <tr>
                   
                   <td><?php echo $user['nom'] . $user['prenom']; ?></td>
