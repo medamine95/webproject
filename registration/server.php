@@ -6,6 +6,7 @@ $errors = array();
 
 $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
 
+
 //si le button est cliqué 
 
 if (isset($_POST['register'])){
