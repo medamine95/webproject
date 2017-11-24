@@ -57,6 +57,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+<!-- Ajax bibliography  -->
+        <script src="../js/ajax.js"></script>  
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -216,15 +219,16 @@ desired effect
                 else
                 {echo'<td><span class="'.$class2.'">pending</span></td>';}
   
-               
-               ?>
-                  <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
-                </tr>
+                ?>
+                  <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
+                  <button type="button" class="btn  btn-danger btn-lg"><i class="fa fa-trash-o fa-1x" aria-hidden="true"></i></td>
+                </button></i></button></tr>
               </tbody>
       <?php  }   ?>
               </table>
             </div>
-
+                                <!--remove later-->
+                                <p>Suggestions: <span id="txtHint"></span></p> 
     </section>
     <!-- /.content -->
   </div>
