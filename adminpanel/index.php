@@ -206,7 +206,6 @@ desired effect
                   <td><?php echo $user['nom'] . $user['prenom']; ?></td>
                <?php 
                $state=$user['state'];
-            
                $class1="label label-success";  //Approved
                $class2="label label-warning"; //pending
                $class3="label label-danger"; //denied
@@ -218,10 +217,10 @@ desired effect
                 echo'<td><span class="'.$class3.'">denied</span></td>';}
                 else
                 {echo'<td><span class="'.$class2.'">pending</span></td>';}
-  
+                
                 ?>
                   <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
-                  <button type="button" class="btn  btn-danger btn-lg"><i class="fa fa-trash-o fa-1x" aria-hidden="true"></i></td>
+                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
                 </button></i></button></tr>
               </tbody>
       <?php  }   ?>
