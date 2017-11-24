@@ -1,7 +1,8 @@
 <?php
+session_start();
+$errors = array();
+$db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
 
-
-include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 
 if (isset($_POST['loginabtnusr'])){
 
@@ -21,14 +22,16 @@ if(empty($password))
 
 
 if(count($errors)==0){
-    $records = $db->prepare('SELECT login,pwd FROM users WHERE login =? and pwd=?');
+    $records = $db->prepare('SELECT login,pwd FROM  users WHERE login =? and pwd=?');
     $records->execute(array($login,$password));
-    $results = $records->fetch(PDO::FETCH_ASSOC);
-    if(count($results) > 0 && $password==$results['pwd']){
-        $_SESSION['login'] = $results['login'];
+    $count=$records->rowCount();
+    if($count > 0 ){
+        $_SESSION['login'] = $_POST['login'];
         header('location:../index.php');
         exit;
-    }else{
+    }else
+    
+    {
        echo '<h1>Username and Password are not found </h1> </br>';
     }
 
