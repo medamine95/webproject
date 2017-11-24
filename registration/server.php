@@ -58,7 +58,7 @@ if (isset($_POST['register'])){
                 "password"=>$password
                 ));
         $_SESSION['login'] = $login;
-        $_SESSION['sucess']="Bonjour $login Vous etes maintenant connecté";
+        $_SESSION['sucess']="Felicitations $login Vous etes maintenant connecté";
         header('location:../index.php');
     }
 }

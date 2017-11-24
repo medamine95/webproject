@@ -164,7 +164,7 @@ desired effect
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Users</span></a></li>
-        <li><a href="article"><i class="fa fa-link"></i> <span>Article</span></a></li>
+        <li><a href="article.php"><i class="fa fa-link"></i> <span>Article</span></a></li>
       
       </ul>
       <!-- /.sidebar-menu -->
@@ -189,11 +189,7 @@ desired effect
 
     <div class="box-body table-responsive no-padding">
               <table border="2px" class="table table-striped">
-      <?php        foreach ($users as $user) {
-
-
-
-       ?>
+     
                 <tbody><tr>
                
                   <th>User</th>
@@ -201,6 +197,7 @@ desired effect
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+                <?php  foreach ($users as $user) {    ?>
                 <tr>
                   
                   <td><?php echo $user['nom'] . $user['prenom']; ?></td>
