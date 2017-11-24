@@ -16,6 +16,13 @@ catch(Exception $e){
 }
 ?>
 
+<?php
+$db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
+$getUsers = $db->prepare("SELECT nom,prenom FROM users");
+$getUsers->execute();
+$users = $getUsers->fetchAll();
+  //  echo $user['nom'] . $user['prenom']. '<br />';
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -179,6 +186,11 @@ desired effect
 
     <div class="box-body table-responsive no-padding">
               <table border="2px" class="table table-striped">
+      <?php        foreach ($users as $user) {
+
+
+
+       ?>
                 <tbody><tr>
                
                   <th>User</th>
@@ -188,33 +200,14 @@ desired effect
                 </tr>
                 <tr>
                   
-                  <td>John Doe</td>
+                  <td><?php echo $user['nom'] . $user['prenom']; ?></td>
                
                   <td><span class="label label-success">Approved</span></td>
                   <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
                 </tr>
-                <tr>
-              
-                  <td>Alexander Pierce</td>
-                 
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
-                  </tr>
-                <tr>
-                 
-                  <td>Bob Doe</td>
-               
-                  <td><span class="label label-success">Approved</span></td>
-                  <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
-                  </tr>
-                <tr>
-             
-                  <td>Mike Doe</td>
-                 
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
-                  </tr>
-              </tbody></table>
+              </tbody>
+      <?php  }   ?>
+              </table>
             </div>
 
     </section>
