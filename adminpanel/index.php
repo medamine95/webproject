@@ -18,7 +18,7 @@ catch(Exception $e){
 
 <?php
 $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
-$getUsers = $db->prepare("SELECT nom,prenom FROM users");
+$getUsers = $db->prepare("SELECT * FROM users");
 $getUsers->execute();
 $users = $getUsers->fetchAll();
   //  echo $user['nom'] . $user['prenom']. '<br />';
@@ -201,8 +201,23 @@ desired effect
                 <tr>
                   
                   <td><?php echo $user['nom'] . $user['prenom']; ?></td>
+               <?php 
+               $state=$user['state'];
+            
+               $class1="label label-success";  //Approved
+               $class2="label label-warning"; //pending
+               $class3="label label-danger"; //denied
                
-                  <td><span class="label label-success">Approved</span></td>
+               if( $state == 'aprooved'){
+                echo'<td><span class="'.$class1.'">aprooved</span></td>';
+                }
+              else if  ( $state == 'denied') {
+                echo'<td><span class="'.$class3.'">denied</span></td>';}
+                else
+                {echo'<td><span class="'.$class2.'">pending</span></td>';}
+  
+               
+               ?>
                   <td><i class="fa fa-check fa-4x" aria-hidden="true"></i><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></td>
                 </tr>
               </tbody>
