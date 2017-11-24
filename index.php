@@ -3,6 +3,7 @@
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 //aladin
 
+
 ?>
 
 <!DOCTYPE html>
@@ -22,25 +23,27 @@ include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 <h1>HOME</h1>
 
 <div>
-    <?php if(isset($_SESSION['sucess'])): ?>
-    <div class="error sucess">
-        <h3>
-            <?php
-                echo $_SESSION['sucess'];
-                unset ($_SESSION['sucess'])
-            ?>
-        </h3>
-    </div>
+  
+  <?php
+
+if (!empty($_SESSION["sucess"])||!empty($_SESSION['login']))
+{
+  echo $_SESSION["sucess"]; 
+  echo $_SESSION['login'];
+  ?>
+  <a href="registration/logout.php" class="btn btn-default btn-flat">Sign out</a>
+ <?php } ?>
+ <?php if (empty($_SESSION["sucess"])||empty($_SESSION['login']))
+{ ?>
+    
+    <a href="registration/login.php" class="btn btn-default btn-flat">Login</a>
+  <?php
+ } ?>
+ 
 
 
-    <?php endif ?>
-    <?php if(isset($_SESSION['login'])): ?>
+  
 
-    <p>Welcome </p> <strong> <php? echo $_SESSION['login'] ; ? > </strong>
-    <p><a href="" style="color:red;">Logout</a></p>
-
-
-    <?php endif ?>
 
 </div>
 </body>

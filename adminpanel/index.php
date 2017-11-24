@@ -154,7 +154,7 @@ desired effect
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Users</span></a></li>
-        <li><a href="article"><i class="fa fa-link"></i> <span>Article</span></a></li>
+        <li><a href="article.php"><i class="fa fa-link"></i> <span>Article</span></a></li>
       
       </ul>
       <!-- /.sidebar-menu -->
