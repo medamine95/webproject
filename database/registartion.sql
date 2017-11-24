@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 23, 2017 at 09:10 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Hôte : 127.0.0.1
+-- Généré le :  ven. 24 nov. 2017 à 21:25
+-- Version du serveur :  10.1.28-MariaDB
+-- Version de PHP :  7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `registartion`
+-- Base de données :  `registartion`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Déchargement des données de la table `admin`
 --
 
 INSERT INTO `admin` (`login`, `pwd`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `admin` (`login`, `pwd`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -52,40 +52,41 @@ CREATE TABLE `users` (
   `prenom` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `login` varchar(20) NOT NULL,
-  `pwd` varchar(20) NOT NULL
+  `pwd` varchar(20) NOT NULL,
+  `state` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `login`, `pwd`) VALUES
-(1, 'Ben Belgacem', 'Mohamed', 'benbelgacem.mohamed@', 'medamine95', 'c2c8d5e47a3528dc0636'),
-(2, 'Ben Belgacem', 'Mohamed', 'FGFG@hotmail.com', 'mop', '202cb962ac59075b964b'),
-(3, 'Marwen', 'Himdi', 'benbelgacem.mohamed@', 'mkbhd', '202cb962ac59075b964b');
+INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `login`, `pwd`, `state`) VALUES
+(1, 'Ben Belgacem', 'Mohamed', 'benbelgacem.mohamed@', 'medamine95', 'c2c8d5e47a3528dc0636', 'Pending'),
+(2, 'Ben Belgacem', 'Mohamed', 'FGFG@hotmail.com', 'mop', '202cb962ac59075b964b', 'Pending'),
+(3, 'Marwen', 'Himdi', 'benbelgacem.mohamed@', 'mkbhd', '202cb962ac59075b964b', 'Pending');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `admin`
+-- Index pour la table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`login`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
