@@ -15,10 +15,8 @@ if (isset($_POST['register'])){
     $email=$_POST['email'];
     $login=$_POST['login'];
     $password=$_POST['password'];
-    
 
     
-
     //validation 
     if(empty($login))
     {
@@ -45,7 +43,7 @@ if (isset($_POST['register'])){
         array_push($errors,"Entrez votre prenom !");
 
     }
-    
+    //inscription
     if(count($errors)==0){
         $password=md5($password);
         $sql="INSERT INTO users(nom,prenom,email,login,pwd) VALUES(:nom,:prenom,:email,:login,:password)";
@@ -55,9 +53,13 @@ if (isset($_POST['register'])){
                 "prenom" => $prenom,
                 "email" => $email,
                 "login" => $login,
-                "password"=>$password
+                "password"=>$password,
                 ));
+
+
         $_SESSION['login'] = $login;
+        //$_SESSION['state'] = $state;
+        
         $_SESSION['sucess']="Felicitations $login Vous etes maintenant connecté";
         header('location:../index.php');
     }
