@@ -198,7 +198,7 @@ desired effect
                   <th>Action</th>
                 </tr>
                 <?php 
-                $btid=0;
+                $btid=0;//variable for the id of tr and approve
                  foreach ($users as $user) {   
                echo " <tr id=btid".$btid.">";
                 ?>
@@ -209,8 +209,8 @@ desired effect
                $class2="label label-warning"; //pending
                $class3="label label-danger"; //denied
                
-               if( $state == 'aprooved'){
-                echo'<td><span id=st'.$btid.' class="'.$class1.'">aprooved</span></td>';
+               if( $state == 'approved'){
+                echo'<td><span id=st'.$btid.' class="'.$class1.'">approved</span></td>';
                 }
               else if  ( $state == 'denied') {
                 echo'<td><span id=st'.$btid.' class="'.$class3.'">denied</span></td>';}
@@ -226,8 +226,9 @@ desired effect
       <?php  }   ?>
               </table>
             </div>
-                <!-- must be remove after test ajax CRUD -->
-           <!-- <div id="txtHint">Customer info will be listed here...</div>-->
+                <!-- just for testing ajax CRUD  -->
+           <!-- <div id="answertest">Customer info will be listed here...</div>-->
+           
     </section>
     <!-- /.content -->
   </div>
