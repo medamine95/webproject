@@ -57,8 +57,14 @@ if (isset($_POST['register'])){
                 "login" => $login,
                 "password"=>$password
                 ));
+                $records2= $db->prepare('SELECT login,pwd,state FROM users WHERE login = :login');
+                $records2->execute(array(
+                    ':login' => $login
+                    ));
+                $data = $records2->fetch(PDO::FETCH_ASSOC);  
+        $_SESSION['state'] = $data['state'];              
         $_SESSION['login'] = $login;
-        $_SESSION['sucess']="Felicitations $login Vous etes maintenant connecté";
+        $_SESSION['sucess']="Felicitations $login Vous etes maintenant connecté ";
         header('location:../index.php');
     }
 }

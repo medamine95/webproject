@@ -198,11 +198,7 @@ desired effect
                   <th>Action</th>
                 </tr>
                 <?php 
-<<<<<<< HEAD
-                $btid=0;
-=======
                 $btid=0;//variable for the id of tr and approve
->>>>>>> 3f418ea6f34719dbceec2ee367df498842445d84
                  foreach ($users as $user) {   
                echo " <tr id=btid".$btid.">";
                 ?>
@@ -213,20 +209,6 @@ desired effect
                $class2="label label-warning"; //pending
                $class3="label label-danger"; //denied
                
-<<<<<<< HEAD
-               if( $state == 'aprooved'){
-                echo'<td><span class="'.$class1.'">aprooved</span></td>';
-                }
-              else if  ( $state == 'denied') {
-                echo'<td><span class="'.$class3.'">denied</span></td>';}
-                else
-                {echo'<td><span class="'.$class2.'">pending</span></td>';}
-                
-                
-                ?>
-                  <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
-                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
-=======
                if( $state == 'approved'){
                 echo'<td><span id=st'.$btid.' class="'.$class1.'">approved</span></td>';
                 }
@@ -239,20 +221,14 @@ desired effect
                 ?>
                   <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
                   <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php  echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
->>>>>>> 3f418ea6f34719dbceec2ee367df498842445d84
                 </button></i></button></tr>
               </tbody>
       <?php  }   ?>
               </table>
             </div>
-<<<<<<< HEAD
-                <!-- must be remove after test ajax CRUD -->
-            <!--<div id="txtHint">Customer info will be listed here...</div>-->
-=======
                 <!-- just for testing ajax CRUD  -->
            <!-- <div id="answertest">Customer info will be listed here...</div>-->
            
->>>>>>> 3f418ea6f34719dbceec2ee367df498842445d84
     </section>
     <!-- /.content -->
   </div>
