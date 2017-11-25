@@ -210,24 +210,24 @@ desired effect
                $class3="label label-danger"; //denied
                
                if( $state == 'aprooved'){
-                echo'<td><span class="'.$class1.'">aprooved</span></td>';
+                echo'<td><span id=st'.$btid.' class="'.$class1.'">aprooved</span></td>';
                 }
               else if  ( $state == 'denied') {
-                echo'<td><span class="'.$class3.'">denied</span></td>';}
+                echo'<td><span id=st'.$btid.' class="'.$class3.'">denied</span></td>';}
                 else
-                {echo'<td><span class="'.$class2.'">pending</span></td>';}
+                {echo'<td><span id=st'.$btid.' class="'.$class2.'">pending</span></td>';}
                 
                 
                 ?>
-                  <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
-                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
+                  <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
+                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php  echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
                 </button></i></button></tr>
               </tbody>
       <?php  }   ?>
               </table>
             </div>
                 <!-- must be remove after test ajax CRUD -->
-            <!--<div id="txtHint">Customer info will be listed here...</div>-->
+           <!-- <div id="txtHint">Customer info will be listed here...</div>-->
     </section>
     <!-- /.content -->
   </div>

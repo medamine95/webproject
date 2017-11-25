@@ -1,19 +1,27 @@
-function AjaxvalidUSER(str) {
-        alert(str);
 
-    /*
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "gethint.php?q="+str, true);
-    xhttp.send();   */
+
+function AjaxvalidUSER(str,nb) {
+        var str1 = "st";
+        nb=nb-1;
+        var res = str1.concat(nb);
+        document.getElementById(res).innerHTML="approved";
+        document.getElementById(res).className = "label label-success";
+        var xhttp; 
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("txtHint").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "http://localhost/webproject/database/CRUD/validusr.php?id="+str, true);
+        xhttp.send();
+   
+       // window.open('http://localhost/webproject/database/CRUD/validusr.php?id='+str);
+        
+    
   }
-/*
-  $("body").on("click",".remove-item",function(){
+ /*
+  $("body").on("click","#remove-item",function(){
       alert('o');
     /*var id = $(this).parent("td").data('id');
     var c_obj = $(this).parents("tr");
@@ -39,12 +47,6 @@ function AjaxrmUSER(str,nb) {
     document.getElementById(res).innerHTML="";
   
 
-
-     var xhttp; 
-     if (str == "") {
-       document.getElementById("txtHint").innerHTML = "";
-       return;
-     }
      xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
@@ -53,8 +55,6 @@ function AjaxrmUSER(str,nb) {
      };
      xhttp.open("GET", "http://localhost/webproject/database/CRUD/delete.php?id="+str, true);
      xhttp.send();
-
-
 
      //window.open('http://localhost/webproject/database/CRUD/delete.php?id='+str);
      //alert("dff");
