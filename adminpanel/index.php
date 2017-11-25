@@ -197,9 +197,11 @@ desired effect
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
-                <?php  foreach ($users as $user) {    ?>
-                <tr>
-                  
+                <?php 
+                $btid=0;
+                 foreach ($users as $user) {   
+               echo " <tr id=btid".$btid.">";
+                ?>
                   <td><?php echo $user['nom'] . $user['prenom']; ?></td>
                <?php 
                $state=$user['state'];
@@ -215,16 +217,17 @@ desired effect
                 else
                 {echo'<td><span class="'.$class2.'">pending</span></td>';}
                 
+                
                 ?>
                   <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
-                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
+                  <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
                 </button></i></button></tr>
               </tbody>
       <?php  }   ?>
               </table>
             </div>
-                                <!--remove later-->
-                                <p>Suggestions: <span id="txtHint"></span></p> 
+                <!-- must be remove after test ajax CRUD -->
+            <!--<div id="txtHint">Customer info will be listed here...</div>-->
     </section>
     <!-- /.content -->
   </div>
