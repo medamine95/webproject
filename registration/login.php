@@ -24,7 +24,11 @@ if(empty($password))
 if(count($errors)==0){
 
     try {
+<<<<<<< HEAD
         $records= $db->prepare('SELECT login,pwd FROM users WHERE login = :login');
+=======
+        $records= $db->prepare('SELECT login,pwd,state FROM users WHERE login = :login');
+>>>>>>> 3f418ea6f34719dbceec2ee367df498842445d84
         $records->execute(array(
             ':login' => $login
             ));
@@ -35,6 +39,10 @@ if(count($errors)==0){
         else {
             if(md5($password) == $data['pwd']) {
                 $_SESSION['login'] = $_POST['login'];  
+<<<<<<< HEAD
+=======
+                $_SESSION['state'] = $data['state'];
+>>>>>>> 3f418ea6f34719dbceec2ee367df498842445d84
                 header('Location:../index.php');
                 exit;
             }
