@@ -7,7 +7,7 @@ $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','')
 if (isset($_POST['loginabtnusr'])){
 
 $login=$_POST['login'];
-$password=md5($_POST['password']);
+$password=$_POST['password'];
 
 if(empty($login))
 {
@@ -22,23 +22,32 @@ if(empty($password))
 
 
 if(count($errors)==0){
-    $records = $db->prepare('SELECT login,pwd FROM  users WHERE login =? and pwd=?');
-    $records->execute(array($login,$password));
-    $count=$records->rowCount();
-    if($count > 0 ){
-        $_SESSION['login'] = $_POST['login'];
-        header('location:../index.php');
-        exit;
-    }else
-    
-    {
-       echo '<h1>Username and Password are not found </h1> </br>';
+
+    try {
+        $records= $db->prepare('SELECT login,pwd FROM users WHERE login = :login');
+        $records->execute(array(
+            ':login' => $login
+            ));
+        $data = $records->fetch(PDO::FETCH_ASSOC);
+        if($data == false){
+            echo "User $usern not found.";
+        }
+        else {
+            if(md5($password) == $data['pwd']) {
+                $_SESSION['login'] = $_POST['login'];  
+                header('Location:../index.php');
+                exit;
+            }
+            else 
+                echo 'Password not match.';
+        }
     }
-
-
-}
-
-}
+    catch(PDOException $e) {
+        $errMsg = $e->getMessage();
+        echo $errMsg;
+    }
+ 
+}}
 
 
 ?>
