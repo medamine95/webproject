@@ -1,0 +1,45 @@
+form { 
+    margin: 0 auto; 
+    width:auto;
+    text-align: center;
+    
+    }
+
+.mycenter{
+
+
+    width: 80%; 
+    height: 80%;
+    min-width: auto;
+    max-width: auto;
+    padding: 50px;
+    margin-top: auto;
+    margin-right:auto ;
+    margin-bottom: auto;
+    margin-left: auto;
+    top: 100%; left: 100%;
+} 
+body {
+    background-color: rgb(20, 154, 195);
+}   
+h2 
+{
+    color: white;
+}
+p
+{
+    color: white;
+}
+.err{
+
+    width:92%;
+    margin:0px auto;
+    padding:10px;
+    border: 1px solid;
+    color:red;
+    background: white;
+    border-radius: 5px;
+    text-align:left;
+
+
+}
