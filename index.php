@@ -28,7 +28,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 
   if (!empty($_SESSION['sucess']) || !empty($_SESSION['login']))
 {  
-  echo 'Welcome '. $_SESSION['login'];
+echo 'Welcome '. $_SESSION['login'];
+//echo 'your state is  '. $_SESSION['state'];
   ?>
   <a href="registration/logout.php" class="btn btn-default btn-flat">Sign out</a>
   <?php } else { ?>  <a href="registration/login.php" class="btn btn-default btn-flat">Login</a>
