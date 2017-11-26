@@ -64,14 +64,10 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `login`, `pwd`, `state`) VA
 (1, 'Ben Belgacem', 'Mohamed', 'benbelgacem.mohamed@', 'medamine95', 'c2c8d5e47a3528dc0636', 'aprooved'),
 (2, 'Ben Belgacem', 'Mohamed', 'FGFG@hotmail.com', 'mop', '202cb962ac59075b964b', 'Pending'),
 (3, 'Marwen', 'Himdi', 'benbelgacem.mohamed@', 'mkbhd', '202cb962ac59075b964b', 'Pending'),
-<<<<<<< HEAD
-(4, 'Mnathem', '.txt', 'benbelgacem.mohamed@', 'op', '202cb962ac59075b964b', 'pending');
-=======
 (4, 'Mnathem', '.txt', 'benbelgacem.mohamed@', 'op', '202cb962ac59075b964b', 'pending'),
 (5, 'deglai', 'oh yeah', 'benbelgacem.mohamed@', 'tr', 'b6d767d2f8ed5d21a44b0e5886680cb9', 'pending'),
 (6, 'deglai', 'fgdg', 'benbelgacem.mohamed@', 'MarwenHmidi', 'b6d767d2f8ed5d21a44b0e5886680cb9', 'pending'),
 (7, 'gh', 'fhfg', 'benbelgacem.mohamed@', 'opm', 'b6d767d2f8ed5d21a44b0e5886680cb9', 'pending');
->>>>>>> 6aa8c22d89c55f21071bc609bf12f5727b36f570
 
 --
 -- Indexes for dumped tables
@@ -107,13 +103,9 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
->>>>>>> 6aa8c22d89c55f21071bc609bf12f5727b36f570
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
