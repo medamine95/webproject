@@ -60,6 +60,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Ajax bibliography && toster library -->
         <script src="../js/ajax.js"></script>  
+        <script src="../js/jquery.min.js"></script> 
+        
        <!-- <script type="text/javascript" src="toastr.min.js"></script>
         <link rel="stylesheet" href="toastr.min.css">-->
    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
