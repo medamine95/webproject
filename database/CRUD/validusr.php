@@ -9,7 +9,12 @@ $getUsers = $db->prepare("UPDATE users SET state = 'approved' WHERE id = '".$id.
 $getUsers->execute();
 
 
- echo json_encode([$id]);
-
+$getUsers = $db->prepare("SELECT nom,prenom FROM users WHERE id = '".$id."'");
+$getUsers->execute();
+$result = $getUsers->fetch();
+$lastname = $result['nom'];
+$name = $result['prenom'];
+ echo json_encode($lastname." ".$name);
+ 
 
 ?>

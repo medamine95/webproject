@@ -58,8 +58,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<!-- Ajax bibliography  -->
+<!-- Ajax bibliography && toster library -->
         <script src="../js/ajax.js"></script>  
+       <!-- <script type="text/javascript" src="toastr.min.js"></script>
+        <link rel="stylesheet" href="toastr.min.css">-->
+   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -226,8 +231,10 @@ desired effect
       <?php  }   ?>
               </table>
             </div>
-                <!-- just for testing ajax CRUD  -->
-           <!-- <div id="answertest">Customer info will be listed here...</div>-->
+                <!-- just for testing ajax CRUD ////////////////////////////////////////////////// -->
+         <!--  <div id="answertest">Customer info will be listed here...</div>-->
+           
+</script>
            
     </section>
     <!-- /.content -->
