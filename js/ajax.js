@@ -1,5 +1,4 @@
 
-
 function AjaxvalidUSER(str,nb) {
   var str1 = "st";
   nb=nb-1;
@@ -18,7 +17,6 @@ function AjaxvalidUSER(str,nb) {
   xhttp.send();
 
 }
-
 
 function AjaxrmUSER(str,nb) {
 
