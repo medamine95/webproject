@@ -133,24 +133,65 @@ catch(Exception $e){
     </section>
     <!-- Main content -->
     <section class="content container-fluid">
-    <button type="button" class="btn  btn-primary btn-lg"> Ajouter Un Article <i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button type="button" class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#create-item"> Ajouter Un Article <i class="fa fa-plus" aria-hidden="true"></i></button>
     <hr>
     <div class="box-body table-responsive no-padding"> 
     <table border="2px" class="table table-striped ">
 			<thead>
 			    <tr>
-				<th>Title</th>
+        <th>Id</th>  
+				<th>Nom</th>
 				<th>Description</th>
-				<th width="200px">Action</th>
+				<th>Catégorie</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Action</th>
 			    </tr>
 			</thead>
 			<tbody>
         <tr>
-        <td>test</td> <td>test</td> <td> test </td>
+        <td>test</td> <td>test</td> <td> test </td> <td>test</td> <td>test</td> <td> test </td> <td>test</td>
         </tr>
 			</tbody>
     </table>
      </div>
+      <!-- Create Item Modal -->
+		<div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Ajouter Un Article</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<form data-toggle="validator" action="api/create.php" method="POST">
+		      			<div class="form-group">
+							<label class="control-label" for="title">Nom:</label>
+							<input type="text" name="title" class="form-control" data-error="Please enter title." required />
+							<div class="help-block with-errors"></div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label" for="title">Description:</label>
+							<textarea name="description" class="form-control" data-error="Please enter description." required></textarea>
+							<div class="help-block with-errors"></div>
+						</div>
+            <div class="form-group">
+							<label class="control-label" for="title">Entrez une catégorie:</label>
+							<input type="text" name="title" class="form-control" data-error="Please enter a category." required />
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn crud-submit btn-success">Submit</button>
+						</div>
+		      		</form>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+          <!-- end  Create Item Modal -->
+
     </section>
     <!-- /.content -->
   </div>
