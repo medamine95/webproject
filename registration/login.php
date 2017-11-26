@@ -30,7 +30,9 @@ if(count($errors)==0){
             ));
         $data = $records->fetch(PDO::FETCH_ASSOC);
         if($data == false){
-            echo "User $usern not found.";
+            
+            echo 'user '.$_POST['login'].' not found';
+            
         }
         else {
             if(md5($password) == $data['pwd']) {
