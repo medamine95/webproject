@@ -1,10 +1,26 @@
 <?php
 try{
-session_start();
-}
-catch(Exception $e){
-    echo "Session expired. " . $e->getMessage();
-}
+  session_start();
+  //control de panel admin avec login obligatoire (pas de session pas d'accés)
+  if (empty($_SESSION["logina"]))
+  {
+    header("location:../index.php");
+    exit;
+  }
+    
+  }
+  catch(Exception $e){
+      echo "Session expired. " . $e->getMessage();
+  }
+  
+
+$db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
+$getarticle = $db->prepare("SELECT * FROM article");
+$getarticle->execute();
+$article = $getarticle->fetchAll();
+  //  echo $user['nom'] . $user['prenom']. '<br />';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -148,11 +164,22 @@ catch(Exception $e){
         <th>Action</th>
 			    </tr>
 			</thead>
+      <?php 
+               
+                 foreach ($article as $article) {   ?>
 			<tbody>
         <tr>
-        <td>test</td> <td>test</td> <td> test </td> <td>test</td> <td>test</td> <td> test </td> <td>test</td>
+        <td><?php echo $article['id']; ?></td>
+         <td><?php echo $article['nom']; ?></td>
+         <td> <?php echo $article['description']; ?> </td>
+          <td><?php echo $article['categorie']; ?></td>
+         <td><?php echo $article['prix']; ?></td> 
+         <td><?php echo $article['qte']; ?> </td>
+         <td> EDIT / DELETE </td>
+          
         </tr>
 			</tbody>
+                 <?php } ?>
     </table>
      </div>
       <!-- Create Item Modal -->
@@ -164,7 +191,7 @@ catch(Exception $e){
 		        <h4 class="modal-title" id="myModalLabel">Ajouter Un Article</h4>
 		      </div>
 		      <div class="modal-body">
-		      		<form data-toggle="validator" action="api/create.php" method="POST">
+		      		<form data-toggle="validator" action="../database/CRUD/addarticle.php" method="POST">
 		      			<div class="form-group">
 							<label class="control-label" for="title">Nom:</label>
 							<input type="text" name="title" class="form-control" data-error="Please enter title." required />
@@ -178,7 +205,7 @@ catch(Exception $e){
 						</div>
             <div class="form-group">
 							<label class="control-label" for="title">Entrez une catégorie:</label>
-							<input type="text" name="title" class="form-control" data-error="Please enter a category." required />
+							<input type="text" name="categorie" class="form-control" data-error="Please enter a category." required />
 							<div class="help-block with-errors"></div>
 						</div>
 						<div class="form-group">
