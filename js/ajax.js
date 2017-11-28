@@ -1,6 +1,6 @@
 
-
 function AjaxvalidUSER(str,nb) {
+
         var str1 = "st";
         nb=nb-1;
         var res = str1.concat(nb);//the panding button id
@@ -41,10 +41,8 @@ function AjaxrmUSER(str,nb) {
 }
 
   
-  function Ajaxarticle(str) {
+  function Ajaxarticle() {
   
- 
-   
       // send a request for the delete.php and get an answer to test.
       if(($('#tit').val())&&($('#des').val())&&($('#cat').val())){
       xhttp = new XMLHttpRequest();
@@ -55,9 +53,23 @@ function AjaxrmUSER(str,nb) {
       };
       xhttp.open("GET", "http://localhost/webproject/database/CRUD/ARTICLE/addarticle.php?title="+$('#tit').val()+"&description="+$('#des').val()+"&categorie="+$('#cat').val(), true);
       xhttp.send();
-      //alert(str);
       $(".modal").modal('hide');
      // alert("rrrrrrrrrrrrrrrrr");
     }else {toastr.error(this.responseText, 'un element est vide', {timeOut: 5000});}
  }
  
+
+ function Ajaxrmarticle(str) {
+  
+ 
+    // send a request for the delete.php and get an answer to test.
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       toastr.error(this.responseText, 'Remove Alert', {timeOut: 5000});
+      }
+    };
+    xhttp.open("GET", "http://localhost/webproject/database/CRUD/ARTICLE/removeart.php?id="+str, true);
+    xhttp.send();
+
+}

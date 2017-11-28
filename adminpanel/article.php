@@ -184,8 +184,11 @@ $article = $getarticle->fetchAll();
           <td><?php echo $article['categorie']; ?></td>
          <td><?php echo $article['prix']; ?></td> 
          <td><?php echo $article['qte']; ?> </td>
-         <td> EDIT / DELETE </td>
-          
+         
+         <td>
+         <button type="button" class="btn  btn-info " ><i class="fa fa-check fa-1x" aria-hidden="true"> </i>EDIT</button>
+          <button type="button" class="btn  btn-danger" ><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i>  DELETE  </button>             </button><td>
+          </td>
         </tr>
 			</tbody>
                  <?php } ?>
