@@ -56,9 +56,10 @@ function AjaxrmUSER(str,nb) {
       $(".modal").modal('hide');
      // alert("rrrrrrrrrrrrrrrrr");
     }else {toastr.error(this.responseText, 'un element est vide', {timeOut: 5000});}
+   
  }
  
-
+/*
  function Ajaxrmarticle(str) {
   
  
@@ -72,4 +73,4 @@ function AjaxrmUSER(str,nb) {
     xhttp.open("GET", "http://localhost/webproject/database/CRUD/ARTICLE/removeart.php?id="+str, true);
     xhttp.send();
 
-}
+}*/
