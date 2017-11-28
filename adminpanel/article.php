@@ -186,8 +186,8 @@ $article = $getarticle->fetchAll();
          <td><?php echo $article['qte']; ?> </td>
          
          <td>
-         <button type="button" class="btn  btn-info " ><i class="fa fa-check fa-1x" aria-hidden="true"> </i>EDIT</button>
-          <button type="button" class="btn  btn-danger" ><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i>  DELETE  </button> 
+         <button type="button" class="btn  btn-info " data-toggle="modal" data-target="#edit-item" ><i class="fa fa-check fa-1x" aria-hidden="true" > </i> EDIT </button>
+          <button type="button" class="btn  btn-danger" ><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i>DELETE </button> 
           </td>
         </tr>
 			</tbody>
@@ -229,7 +229,47 @@ $article = $getarticle->fetchAll();
 		  </div>
 		</div>
           <!-- end  Create Item Modal -->
+<!-- Edit Item Modal -->
+<div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+		      </div>
 
+		      <div class="modal-body">
+		      		<form data-toggle="validator">
+		      			<input type="hidden" name="id" class="edit-id">
+
+		      			<div class="form-group">
+							<label class="control-label" for="title">Title:</label>
+							<input type="text" name="title" class="form-control" data-error="Please enter title." required />
+							<div class="help-block with-errors"></div>
+              </div>
+
+						<div class="form-group">
+							<label class="control-label" for="title">Description:</label>
+							<textarea name="description" class="form-control" data-error="Please enter description." required></textarea>
+							<div class="help-block with-errors"></div>
+						</div>
+            <div class="form-group">
+							<label class="control-label" for="categorie">Entrez une catégorie:</label>
+							<input type="text" id="cat" name="categorie" class="form-control" data-error="Please enter a category." required />
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success crud-submit-edit">Submit</button>
+						</div>
+
+		      		</form>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+             	<!-- end Edit Item Modal -->
     </section>
     
     <!-- /.content -->
