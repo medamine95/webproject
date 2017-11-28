@@ -15,12 +15,10 @@ try{
   
 
 $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
-$getarticle = $db->prepare("SELECT * FROM article");
+$getarticle = $db->prepare("SELECT * FROM article Order by id desc");
 $getarticle->execute();
 $article = $getarticle->fetchAll();
-  //  echo $user['nom'] . $user['prenom']. '<br />';
-
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +47,17 @@ $article = $getarticle->fetchAll();
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+<!-- Ajax bibliography && toster library -->
+<script src="../js/ajax.js"></script>  
+        <script src="../js/jquery.min.js"></script> 
+        
+       <!-- <script type="text/javascript" src="toastr.min.js"></script>
+        <link rel="stylesheet" href="toastr.min.css">-->
+   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -191,26 +200,25 @@ $article = $getarticle->fetchAll();
 		        <h4 class="modal-title" id="myModalLabel">Ajouter Un Article</h4>
 		      </div>
 		      <div class="modal-body">
-		      		<form data-toggle="validator" action="../database/CRUD/addarticle.php" method="POST">
+		      		<form data-toggle="validator" >
 		      			<div class="form-group">
 							<label class="control-label" for="title">Nom:</label>
-							<input type="text" name="title" class="form-control" data-error="Please enter title." required />
+							<input type="text" id="tit" name="title" class="form-control" data-error="Please enter title." required />
 							<div class="help-block with-errors"></div>
 						</div>
 
 						<div class="form-group">
-							<label class="control-label" for="title">Description:</label>
-							<textarea name="description" class="form-control" data-error="Please enter description." required></textarea>
+							<label class="control-label" for="description">Description:</label>
+							<textarea  id="des" name="description" class="form-control" data-error="Please enter description." required></textarea>
 							<div class="help-block with-errors"></div>
 						</div>
             <div class="form-group">
-							<label class="control-label" for="title">Entrez une catégorie:</label>
-							<input type="text" name="categorie" class="form-control" data-error="Please enter a category." required />
+							<label class="control-label" for="categorie">Entrez une catégorie:</label>
+							<input type="text" id="cat" name="categorie" class="form-control" data-error="Please enter a category." required />
 							<div class="help-block with-errors"></div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn crud-submit btn-success">Submit</button>
-						</div>
+							<button type="button" class="btn btn-success" onclick="Ajaxarticle();">Submit</button></div>
 		      		</form>
 		      </div>
 		    </div>
@@ -220,6 +228,7 @@ $article = $getarticle->fetchAll();
           <!-- end  Create Item Modal -->
 
     </section>
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
