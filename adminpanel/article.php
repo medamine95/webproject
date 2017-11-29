@@ -188,7 +188,7 @@ $article = $getarticle->fetchAll();
          
          <td>
          <button type="button"  class="btn  btn-info " data-toggle="modal" data-target="#edit-item"  onclick="ini(<?php echo $article['id'] ?>,<?php ++$atid; echo $atid; ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"   > </i> EDIT </button>
-          <button type="button" class="btn  btn-danger" ><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i>DELETE </button> 
+          <button type="button" class="btn  btn-danger"  onclick="ini(<?php echo $article['id'] ?>,<?php echo $atid; ?>);Ajaxrmarticle();"><i class="fa fa-trash-o fa-1x " aria-hidden="true"  ></i>DELETE </button> 
           </td>
         </tr>
 			

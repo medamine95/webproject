@@ -45,7 +45,6 @@ var vrid=0;
 var vrpos=0;  
   function Ajaxarticle() {
 
-         // send a request for the delete.php and get an answer to test.
       if(($('#tit').val())&&($('#des').val())&&($('#cat').val())){
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -53,7 +52,7 @@ var vrpos=0;
        
           var array = JSON.parse("[" + this.responseText+ "]");
           
-              temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\"></i>DELETE </button>  ';
+              temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>)\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\"></i>DELETE </button>  ';
                document.getElementById("btid").insertAdjacentHTML('afterbegin', "<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>");
          document.getElementById("tit").innerHTML="";
          document.getElementById("des").innerHTML="";
@@ -69,11 +68,8 @@ var vrpos=0;
    
  }
  
- 
- document.getElementById("atid0")="dd";
 
  function Ajaxaddarticle() {
-     // send a request for the delete.php and get an answer to test.
      if(($('#itt').val())&&($('#sed').val())&&($('#tac').val())){
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -81,7 +77,7 @@ var vrpos=0;
        
           var array = JSON.parse("[" + this.responseText+ "]");
           
-              temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\"></i>DELETE </button>  ';
+              temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>)\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\"></i>DELETE </button>  ';
              // document.getElementById(btid).insertAdjacentHTML('afterbegin', "<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>");
              document.getElementById("atid"+vrpos).innerHTML="<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>";
            
@@ -97,6 +93,32 @@ var vrpos=0;
     }else {toastr.error("", 'un element est vide', {timeOut: 5000});}
    
    }
+
+   
+   
+ function Ajaxrmarticle() {
+  // send a request for the delete.php and get an answer to test.
+   xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+     
+     if (this.readyState == 4 && this.status == 200) {
+       var array = JSON.parse("[" + this.responseText+ "]");
+       
+          //document.getElementById("atid"+vrpos).innerHTML="";
+          document.getElementById("atid"+vrpos).innerHTML="";
+          
+          toastr.error(array[0][1], 'supprimer avec succès', {timeOut: 5000});
+      
+     }
+   };
+   xhttp.open("GET", "http://localhost/webproject/database/CRUD/ARTICLE/removeart.php?id="+vrid, true);
+   xhttp.send();
+
+}
+
+
+
+
 
    function ini(a,b){ vrid=a;
     vrpos=  b-1; }
