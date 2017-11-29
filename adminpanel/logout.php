@@ -2,7 +2,7 @@
 session_start();
 session_destroy();
 $path=$_SERVER['DOCUMENT_ROOT'];
-echo "<h2>Logged out you gonna be redireicted to the main page in 3 seconds ..</h2>";
+echo "<hr><center><h2>Logged out you gonna be redireicted to the main page in 3 seconds ..</h2> </center>";
 header("refresh:3;url=../index.php");
 
 
@@ -29,9 +29,9 @@ header("refresh:3;url=../index.php");
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
         <form>
-
+        <center>
         <div class="col-xs-12 col-md-6"><a href="../index.php" class="btn btn-success btn-block btn-md">Retour vers la page d'accueil</a></div>
-	
+        </center>
 		</form>
       
 	</div>

@@ -12,8 +12,7 @@ try{
   catch(Exception $e){
       echo "Session expired. " . $e->getMessage();
   }
-  
-
+ 
 $db = new PDO('mysql:host=localhost;dbname=registartion;charset=utf8','root','');
 $getarticle = $db->prepare("SELECT * FROM article Order by id desc");
 $getarticle->execute();
@@ -51,14 +50,12 @@ $article = $getarticle->fetchAll();
 <!-- Ajax bibliography && toster library -->
 <script src="../js/ajax.js"></script>  
         <script src="../js/jquery.min.js"></script> 
-        
+    
        <!-- <script type="text/javascript" src="toastr.min.js"></script>
         <link rel="stylesheet" href="toastr.min.css">-->
    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -72,9 +69,9 @@ $article = $getarticle->fetchAll();
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>A</b>P</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b>PANEL</span>
     </a>
 
     <!-- Header Navbar -->
@@ -92,14 +89,14 @@ $article = $getarticle->fetchAll();
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="dist/img/avatar5.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"> <?php echo $_SESSION['logina']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
                 <p>
                   Admin
                   <small>Member since Nov. 2017</small>
@@ -125,7 +122,7 @@ $article = $getarticle->fetchAll();
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo $_SESSION['logina']; ?></p>
