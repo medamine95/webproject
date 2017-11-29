@@ -233,8 +233,7 @@ desired effect
       <?php  }   ?>
               </table>
             </div>
-                <!-- just for testing ajax CRUD ////////////////////////////////////////////////// -->
-         <!--  <div id="answertest">Customer info will be listed here...</div>-->
+              
            
 </script>
            

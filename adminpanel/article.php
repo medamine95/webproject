@@ -173,11 +173,12 @@ $article = $getarticle->fetchAll();
         <th>Action</th>
 			    </tr>
 			</thead>
+      <tbody id="btid">
       <?php 
-               $btid=0;//variable for the id of tr and approve
-                 foreach ($article as $article) {   ?>
-			<tbody>
-        <tr>
+               $atid=0;//variable for the id of tr and approve
+                 foreach ($article as $article) {  
+			
+       echo "<tr id=atid".$atid.">"; ?>
         <td><?php echo $article['id']; ?></td>
          <td><?php echo $article['nom']; ?></td>
          <td> <?php echo $article['description']; ?> </td>
@@ -186,12 +187,13 @@ $article = $getarticle->fetchAll();
          <td><?php echo $article['qte']; ?> </td>
          
          <td>
-         <button type="button" class="btn  btn-info " data-toggle="modal" data-target="#edit-item" ><i class="fa fa-check fa-1x" aria-hidden="true" > </i> EDIT </button>
+         <button type="button"  class="btn  btn-info " data-toggle="modal" data-target="#edit-item"  onclick="ini(<?php echo $article['id'] ?>,<?php ++$atid; echo $atid; ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"   > </i> EDIT </button>
           <button type="button" class="btn  btn-danger" ><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i>DELETE </button> 
           </td>
         </tr>
-			</tbody>
+			
                  <?php } ?>
+                 </tbody>
     </table>
      </div>
       <!-- Create Item Modal -->
@@ -244,22 +246,22 @@ $article = $getarticle->fetchAll();
 
 		      			<div class="form-group">
 							<label class="control-label" for="title">Title:</label>
-							<input type="text" name="title" class="form-control" data-error="Please enter title." required />
+							<input type="text" id="itt" name="title" class="form-control" data-error="Please enter title." required />
 							<div class="help-block with-errors"></div>
               </div>
 
 						<div class="form-group">
-							<label class="control-label" for="title">Description:</label>
-							<textarea name="description" class="form-control" data-error="Please enter description." required></textarea>
+							<label class="control-label" for="description">Description:</label>
+							<textarea id="sed" name="description" class="form-control" data-error="Please enter description." required></textarea>
 							<div class="help-block with-errors"></div>
 						</div>
             <div class="form-group">
 							<label class="control-label" for="categorie">Entrez une catégorie:</label>
-							<input type="text" id="cat" name="categorie" class="form-control" data-error="Please enter a category." required />
+							<input type="text" id="tac" name="categorie" class="form-control" data-error="Please enter a category." required />
 							<div class="help-block with-errors"></div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-success crud-submit-edit">Submit</button>
+							<button type="button" onclick="Ajaxaddarticle();"  class="btn btn-success">Submit</button>
 						</div>
 
 		      		</form>
@@ -268,8 +270,6 @@ $article = $getarticle->fetchAll();
 		    </div>
 		  </div>
 		</div>
-
-             	<!-- end Edit Item Modal -->
     </section>
     
     <!-- /.content -->
@@ -296,5 +296,6 @@ $article = $getarticle->fetchAll();
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+        
 </body>
 </html>

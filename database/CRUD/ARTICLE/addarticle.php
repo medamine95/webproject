@@ -13,8 +13,8 @@ $sql = "SELECT * FROM article Order by id desc LIMIT 1";
 $result = $db->prepare($sql);
 $result->execute();
 $data = $result->fetch();
-$name = $data['nom'];
+//$name = $data['nom'];
 
-echo json_encode($name);
+echo json_encode($data);
 //header("refresh:0;url=../../adminpanel/article.php");
 ?>
