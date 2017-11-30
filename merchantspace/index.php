@@ -1,13 +1,26 @@
 <?php
+try{
+  //demarage de la session
+ session_start();
+ //control de panel admin avec login obligatoire (pas de session pas d'accés)
+ if (empty($_SESSION["login"]))
+ {
+   header("location:../index.php");
+   exit;
+ }
+   
+ }
+ catch(Exception $e){
+     echo "Session expired. " . $e->getMessage();
+ }
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
-
 
 $getarticle = $db->prepare("SELECT * FROM article");
 $getarticle->execute();
 $article = $getarticle->fetchAll();
  
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,8 +62,8 @@ $article = $getarticle->fetchAll();
 {  
   echo 'Welcome <strong>'. $_SESSION['login'].'</strong> -'.$_SESSION['state'].'-';
   ?> <a href="../registration/logout.php" class="btn btn-default btn-flat btn-danger">Sign out</a>
-  <?php } else { ?>  <a href="registration/login.php" class="btn btn-default btn-flat btn-primary btn-space ">Login</a>
-  <a href="registration/register.php" class="btn btn-default btn-flat btn-success btn-space">Register</a> <?php }?> </a>
+  <?php } else { ?>  <a href="../registration/login.php" class="btn btn-default btn-flat btn-primary btn-space ">Login</a>
+  <a href="../registration/register.php" class="btn btn-default btn-flat btn-success btn-space">Register</a> <?php }?> </a>
             <li class="nav-item active">
               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
