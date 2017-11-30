@@ -63,7 +63,7 @@ if (isset($_POST['register'])){
         $_SESSION['state'] = $data['state'];              
         $_SESSION['login'] = $login;
         $_SESSION['sucess']="Felicitations $login Vous etes maintenant connecté ";
-        header('location:../index.php');
+        header('location:../merchantspace/index.php');
     }
 }
 

@@ -218,7 +218,7 @@ $article = $getarticle->fetchAll();
 							<label class="control-label" for="categorie">Entrez une catégorie:</label>
 							<input type="text" id="cat" name="categorie" class="form-control" data-error="Please enter a category." required />
 							<div class="help-block with-errors"></div>
-						</div>
+						</div>         
 						<div class="form-group">
 							<button type="button" class="btn btn-success" onclick="Ajaxarticle();">Submit</button></div>
 		      		</form>
