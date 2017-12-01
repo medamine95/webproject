@@ -7,7 +7,7 @@ $getarticle->execute();
 $article = $getarticle->fetchAll();
  
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,14 +43,11 @@ $article = $getarticle->fetchAll();
         <div class="collapse navbar-collapse" id="navbarResponsive">
         
           <ul class="navbar-nav ml-auto">
-          <a class="navbar-brand supressed" href="#"> <?php
-
-  if (!empty($_SESSION['sucess']) || !empty($_SESSION['login']))
-{  
-  echo 'Welcome <strong>'. $_SESSION['login'].'</strong> -'.$_SESSION['state'].'-';
-  ?> <a href="registration/logout.php" class="btn btn-default btn-flat btn-danger">Sign out</a>
-  <?php } else { ?>  <a href="registration/login.php" class="btn btn-default btn-flat btn-primary btn-space ">Login</a>
-  <a href="registration/register.php" class="btn btn-default btn-flat btn-success btn-space">Register</a> <?php }?> </a>
+          <a class="navbar-brand supressed" href="#"> 
+ 
+  
+    <a href="registration/login.php" class="btn btn-default btn-flat btn-primary btn-space ">Login</a>
+  <a href="registration/register.php" class="btn btn-default btn-flat btn-success btn-space">Register</a> </a>
             <li class="nav-item active">
               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>

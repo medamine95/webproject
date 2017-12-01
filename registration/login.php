@@ -38,7 +38,7 @@ if(count($errors)==0){
             if(md5($password) == $data['pwd']) {
                 $_SESSION['login'] = $_POST['login'];  
                 $_SESSION['state'] = $data['state'];
-                header('Location:../index.php');
+                header('Location:../merchantspace/index.php');
                 exit;
             }
             else 
