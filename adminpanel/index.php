@@ -102,11 +102,12 @@ $("#suggesstion-box").hide();
 </script>
     <?php
         include($_SERVER['DOCUMENT_ROOT'].'/webproject/adminpanel/searchbox.php');
+        ?>
         
 
         
-       <!-- <script type="text/javascript" src="toastr.min.js"></script>
-        <link rel="stylesheet" href="toastr.min.css">-->
+      <script type="text/javascript" src="toastr.min.js"></script>
+        <link rel="stylesheet" href="toastr.min.css">
    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
