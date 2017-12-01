@@ -29,6 +29,10 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
+<!--supress for search-->
+
+<!--supress for search-->
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +64,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Ajax bibliography && toster library -->
         <script src="../js/ajax.js"></script>  
+        <!--     <script src="../js/search.js"></script>   -->
+    
         <script src="../js/jquery.min.js"></script> 
+        
+
         
        <!-- <script type="text/javascript" src="toastr.min.js"></script>
         <link rel="stylesheet" href="toastr.min.css">-->
@@ -187,14 +195,20 @@ desired effect
         Users
         <small>Users Table</small>
       </h1>
+      
+<!-- KILL ME HERE PLEASE --> 
+
+<!-- KILL ME HERE PLEASE -->  
      
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
+    
 
 
     <div class="box-body table-responsive no-padding">
+    
               <table border="2px" class="table table-striped">
      
                 <tbody><tr>
