@@ -1,12 +1,14 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
+include($_SERVER['DOCUMENT_ROOT'].'/webproject/searchar.php');
+
 
 
 $getarticle = $db->prepare("SELECT * FROM article");
 $getarticle->execute();
 $article = $getarticle->fetchAll();
  
-?>
+?>   
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +24,45 @@ $article = $getarticle->fetchAll();
     <link href="css/toastr.min.css" rel="stylesheet">
      <script src="js/toastr.min.js"> </script>
      <script src="js/bootstrap.min.js"></script>
-      <script src="js/jquery-3.2.1.min"></script>
+      <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
-    <script>
-    
-    </script>
+    <style>
+  
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+#country-list li:hover{background:#ece3d2;cursor: pointer;}
+#search-box{padding: 10px;border: #a8d4b1 1px solid;border-radius:4px;}
+</style>
+<script>
+
+$(document).ready(function(){
+	$("#search-box").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "searchar.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url(img/LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+	});
+});
+//To select country name
+function selectname(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+</script>
+
+
   </head>
   <body>
     <!-- Navigation -->
@@ -60,16 +93,22 @@ $article = $getarticle->fetchAll();
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
-          <form class="form-inline">
-          <div class="mainsearch">
+         
+
+          <div class="frmSearch">
           <input type="text" id="search-box" placeholder="Article Search" />
           <div id="suggesstion-box"></div>
-        </div>    <button class="btn btn-outline-success my-1 my-sm-0 " type="submit">Search</button>
+        </div>
+              <button class="btn btn-outline-success my-1 my-sm-0 " type="submit">Search</button>
+
+
   </form>
          
         </div>
       </div>
     </nav>
+
+   
       <!-- Page Content -->
     <div class="container">
              <h1 class="my-4">Shop Name</h1>
