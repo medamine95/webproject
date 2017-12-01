@@ -53,6 +53,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style>
+.frmSearch {border: 1px solid #a8d4b1;background-color: #c6f7d0;margin: 2px 0px;padding:40px;border-radius:4px;}
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+#country-list li:hover{background:#ece3d2;cursor: pointer;}
+#search-box{padding: 10px;border: #a8d4b1 1px solid;border-radius:4px;}
+</style>
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -61,7 +68,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Ajax bibliography && toster library -->
         <script src="../js/ajax.js"></script>  
         <script src="../js/jquery.min.js"></script> 
+  
+    <script>
+    $(document).ready(function(){
+	$("#search-box").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "searchbox.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+	});
+});
+//To select country name
+function selectname(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+
+</script>
+    <?php
+        include($_SERVER['DOCUMENT_ROOT'].'/webproject/adminpanel/searchbox.php');
         
+    ?>
        <!-- <script type="text/javascript" src="toastr.min.js"></script>
         <link rel="stylesheet" href="toastr.min.css">-->
    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -189,9 +225,19 @@ desired effect
       </h1>
      
     </section>
+    <!--<form action="index.php" method="post">
+    <input type="text" name="typeahead" placeholder="Enter a  Name">
+    <div id="suggesstion-box"></div>
 
+    </div>
+    </form> 
+ -->  
+ <div class="frmSearch">
+	<input type="text" id="search-box" placeholder="Saisie Votre Nom" size="25" />
+	<div id="suggesstion-box"></div>
+</div> 
     <!-- Main content -->
-    <section class="content container-fluid">
+	    <section class="content container-fluid">
 
 
     <div class="box-body table-responsive no-padding">

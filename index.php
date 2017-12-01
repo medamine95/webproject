@@ -27,6 +27,9 @@ $article = $getarticle->fetchAll();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
+    <script>
+    
+    </script>
   </head>
   <body>
     <!-- Navigation -->
@@ -61,8 +64,10 @@ $article = $getarticle->fetchAll();
             </li>
           </ul>
           <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-1 my-sm-0 " type="submit">Search</button>
+          <div class="mainsearch">
+          <input type="text" id="search-box" placeholder="Article Search" />
+          <div id="suggesstion-box"></div>
+        </div>    <button class="btn btn-outline-success my-1 my-sm-0 " type="submit">Search</button>
   </form>
          
         </div>
