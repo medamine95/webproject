@@ -18,6 +18,10 @@ $article = $getarticle->fetchAll();
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Page d'accueil </title>
+    <!-- add to cart -->
+    <link rel="stylesheet" href="css/reset.css"> 
+	<link rel="stylesheet" href="css/style.css"> 
+  	
     <link rel="shortcut icon" type="image/x-icon" href="img/shopping-cart.ico" />
     <link href="css/custom.css" rel="stylesheet">
     <!-- toaster -->
@@ -155,6 +159,7 @@ $("#suggesstion-box").hide();
                     <a href="#"><?php echo $article['nom'];?></a>
                   </h4>
                   <h5>$24.99</h5>
+                  <a href="#0" class="cd-add-to-cart" data-price="24.99">Add To Cart</a>
                   <p class="card-text"><?php echo $article['description'];?></p>
                 </div>
                 <div class="card-footer">
@@ -167,12 +172,42 @@ $("#suggesstion-box").hide();
            
 
           </div>
+
+       
           <!-- /.row -->
            </div>
         <!-- /.col-lg-9 -->
       </div>
       <!-- /.row -->
     </div>
+    <div class="cd-cart-container empty">
+	<a href="#0" class="cd-cart-trigger">
+		Cart
+		<ul class="count"> <!-- cart items count -->
+			<li>0</li>
+			<li>0</li>
+		</ul> <!-- .count -->
+	</a>
+ 
+	<div class="cd-cart">
+		<div class="wrapper">
+			<header>
+				<h2>Cart</h2>
+				<span class="undo">Item removed. <a href="#0">Undo</a></span>
+			</header>
+			
+			<div class="body">
+				<ul>
+					<!-- products added to the cart will be inserted here using JavaScript -->
+				</ul>
+			</div>
+ 
+			<footer>
+				<a href="#0" class="checkout btn"><em>Checkout - $<span>0</span></em></a>
+			</footer>
+		</div>
+	</div> <!-- .cd-cart -->
+</div> <!-- cd-cart-container -->
     <!-- /.container -->
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -184,6 +219,8 @@ $("#suggesstion-box").hide();
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/cart.js"></script>
+
   </body>
 
 </html>
