@@ -3,7 +3,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/searchar.php');
 
 
-
+$getarticle2 = $db->prepare("SELECT prix FROM vtest3");
+$getarticle2->execute();
+//$article2 = $getarticle2->fetch();
+$article2 = $getarticle2->fetchAll();
+//////////////////
 $getarticle = $db->prepare("SELECT * FROM article");
 $getarticle->execute();
 $article = $getarticle->fetchAll();
@@ -57,13 +61,31 @@ $(document).ready(function(){
 			$("#search-box").css("background","#FFF");
 		}
 		});
-	});
+  });
+  
+  $("#search-box").on("keyup", function() {
+
+    var value = $(this).val().toLowerCase();
+    $(".card").filter(function() {
+    //  alert(value);
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+
+
+
+
 });
 //To select country name
 function selectname(val) {
 $("#search-box").val(val);
 $("#suggesstion-box").hide();
 }
+</script>
+<script>
+
+
+
 </script>
 
 
@@ -73,7 +95,7 @@ $("#suggesstion-box").hide();
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
       
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">Price Comparator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -115,7 +137,7 @@ $("#suggesstion-box").hide();
    
       <!-- Page Content -->
     <div class="container">
-             <h1 class="my-4">Shop Name</h1>
+             <h1 class="my-4"><i>Welcome</i></h1>
        
         <!-- /.col-lg-3 -->
 
@@ -149,7 +171,9 @@ $("#suggesstion-box").hide();
           </div>
 
           <div class="row">
-          <?php foreach($article as $article){ ?>
+          <?php
+          $k=0;
+          foreach($article as $article){ ?>
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-150">
@@ -158,8 +182,15 @@ $("#suggesstion-box").hide();
                   <h4 class="card-title">
                     <a href="#"><?php echo $article['nom'];?></a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <a href="#0" class="cd-add-to-cart" data-price="24.99">Add To Cart</a>
+                  <h5>   <?php               echo $article2[$k++][0];
+
+                  ?> DT
+                  
+                  
+                  </h5>
+                  <a href="#0" class="cd-add-to-cart" data-price="<?php               echo $article2[$k++][0];
+
+                  ?>">Add To Cart</a>
                   <p class="card-text"><?php echo $article['description'];?></p>
                 </div>
                 <div class="card-footer">
@@ -203,7 +234,7 @@ $("#suggesstion-box").hide();
 			</div>
  
 			<footer>
-				<a href="#0" class="checkout btn"><em>Checkout - $<span>0</span></em></a>
+				<a href="#0" class="checkout btn"><em>Checkout -<span>0 </span>DT</em></a>
 			</footer>
 		</div>
 	</div> <!-- .cd-cart -->
@@ -212,14 +243,187 @@ $("#suggesstion-box").hide();
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; LFSI-3B 2017</p>
       </div>
       <!-- /.container -->
     </footer>
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/cart.js"></script>
+    <script>
+    jQuery(document).ready(function($){
+	var cartWrapper = $('.cd-cart-container');
+	//product id - you don't need a counter in your real project but you can use your real product id
+	var productId = 0;
+
+	if( cartWrapper.length > 0 ) {
+		//store jQuery objects
+		var cartBody = cartWrapper.find('.body')
+		var cartList = cartBody.find('ul').eq(0);
+		var cartTotal = cartWrapper.find('.checkout').find('span');
+		var cartTrigger = cartWrapper.children('.cd-cart-trigger');
+		var cartCount = cartTrigger.children('.count')
+		var addToCartBtn = $('.cd-add-to-cart');
+		var undo = cartWrapper.find('.undo');
+		var undoTimeoutId;
+
+		//add product to cart
+		addToCartBtn.on('click', function(event){
+			event.preventDefault();
+			addToCart($(this));
+		});
+
+		//open/close cart
+		cartTrigger.on('click', function(event){
+			event.preventDefault();
+			toggleCart();
+		});
+
+		//close cart when clicking on the .cd-cart-container::before (bg layer)
+		cartWrapper.on('click', function(event){
+			if( $(event.target).is($(this)) ) toggleCart(true);
+		});
+
+		//delete an item from the cart
+		cartList.on('click', '.delete-item', function(event){
+			event.preventDefault();
+			removeProduct($(event.target).parents('.product'));
+		});
+
+		//update item quantity
+		cartList.on('change', 'select', function(event){
+			quickUpdateCart();
+		});
+
+		//reinsert item deleted from the cart
+		undo.on('click', 'a', function(event){
+			clearInterval(undoTimeoutId);
+			event.preventDefault();
+			cartList.find('.deleted').addClass('undo-deleted').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(){
+				$(this).off('webkitAnimationEnd oanimationend msAnimationEnd animationend').removeClass('deleted undo-deleted').removeAttr('style');
+				quickUpdateCart();
+			});
+			undo.removeClass('visible');
+		});
+	}
+
+	function toggleCart(bool) {
+		var cartIsOpen = ( typeof bool === 'undefined' ) ? cartWrapper.hasClass('cart-open') : bool;
+		
+		if( cartIsOpen ) {
+			cartWrapper.removeClass('cart-open');
+			//reset undo
+			clearInterval(undoTimeoutId);
+			undo.removeClass('visible');
+			cartList.find('.deleted').remove();
+
+			setTimeout(function(){
+				cartBody.scrollTop(0);
+				//check if cart empty to hide it
+				if( Number(cartCount.find('li').eq(0).text()) == 0) cartWrapper.addClass('empty');
+			}, 500);
+		} else {
+			cartWrapper.addClass('cart-open');
+		}
+	}
+
+	function addToCart(trigger) {
+		var cartIsEmpty = cartWrapper.hasClass('empty');
+		//update cart product list
+		addProduct();
+		//update number of items 
+		updateCartCount(cartIsEmpty);
+		//update total price
+		updateCartTotal(trigger.data('price'), true);
+		//show cart
+		cartWrapper.removeClass('empty');
+	}
+
+	function addProduct() {
+		//this is just a product placeholder
+		//you should insert an item with the selected product info
+		//replace productId, productName, price and url with your real product info
+		productId = productId + 1;
+		var productAdded = $('<li class="product"><div class="product-image"><a href="#0"><img src="img/product-preview.png" alt="placeholder"></a></div><div class="product-details"><h3><a href="#0"><?php echo $article['nom'];?></a></h3><span class="price">  <?php echo $article2[$k++][0]; ?> Dt </span><div class="actions"><a href="#0" class="delete-item">Delete</a><div class="quantity"><label for="cd-product-'+ productId +'">Qty</label><span class="select"><select id="cd-product-'+ productId +'" name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></span></div></div></div></li>');
+		cartList.prepend(productAdded);
+	}
+
+	function removeProduct(product) {
+		clearInterval(undoTimeoutId);
+		cartList.find('.deleted').remove();
+		
+		var topPosition = product.offset().top - cartBody.children('ul').offset().top ,
+			productQuantity = Number(product.find('.quantity').find('select').val()),
+			productTotPrice = Number(product.find('.price').text().replace('$', '')) * productQuantity;
+		
+		product.css('top', topPosition+'px').addClass('deleted');
+
+		//update items count + total price
+		updateCartTotal(productTotPrice, false);
+		updateCartCount(true, -productQuantity);
+		undo.addClass('visible');
+
+		//wait 8sec before completely remove the item
+		undoTimeoutId = setTimeout(function(){
+			undo.removeClass('visible');
+			cartList.find('.deleted').remove();
+		}, 8000);
+	}
+
+	function quickUpdateCart() {
+		var quantity = 0;
+		var price = 0;
+		
+		cartList.children('li:not(.deleted)').each(function(){
+			var singleQuantity = Number($(this).find('select').val());
+			quantity = quantity + singleQuantity;
+			price = price + singleQuantity*Number($(this).find('.price').text().replace('$', ''));
+		});
+
+		cartTotal.text(price.toFixed(2));
+		cartCount.find('li').eq(0).text(quantity);
+		cartCount.find('li').eq(1).text(quantity+1);
+	}
+
+	function updateCartCount(emptyCart, quantity) {
+		if( typeof quantity === 'undefined' ) {
+			var actual = Number(cartCount.find('li').eq(0).text()) + 1;
+			var next = actual + 1;
+			
+			if( emptyCart ) {
+				cartCount.find('li').eq(0).text(actual);
+				cartCount.find('li').eq(1).text(next);
+			} else {
+				cartCount.addClass('update-count');
+
+				setTimeout(function() {
+					cartCount.find('li').eq(0).text(actual);
+				}, 150);
+
+				setTimeout(function() {
+					cartCount.removeClass('update-count');
+				}, 200);
+
+				setTimeout(function() {
+					cartCount.find('li').eq(1).text(next);
+				}, 230);
+			}
+		} else {
+			var actual = Number(cartCount.find('li').eq(0).text()) + quantity;
+			var next = actual + 1;
+			
+			cartCount.find('li').eq(0).text(actual);
+			cartCount.find('li').eq(1).text(next);
+		}
+	}
+
+	function updateCartTotal(price, bool) {
+		bool ? cartTotal.text( (Number(cartTotal.text()) + Number(price)).toFixed(2) )  : cartTotal.text( (Number(cartTotal.text()) - Number(price)).toFixed(2) );
+	}
+});
+    
+    
+    </script>
 
   </body>
 

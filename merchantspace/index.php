@@ -14,8 +14,40 @@ try{
      echo "Session expired. " . $e->getMessage();
  }
 include($_SERVER['DOCUMENT_ROOT'].'/webproject/registration/server.php');
+$noms=$_SESSION["login"];
 
-$getarticle = $db->prepare("SELECT * FROM article");
+
+
+if (isset($_POST['sub'])){
+  $prix=$_POST['prix'];
+  $qte=$_POST['qte'];
+  
+   
+      $sql="  Update vtest3 set prix='".$prix."',qte='".$qte."' where logincom='".$noms."' " ;
+      $req = $db->prepare($sql);
+      $req->execute();           
+              
+          
+            }
+
+      //nomrt filling 
+              
+
+
+
+   //affichage               
+   $getarticle2 = $db->prepare("SELECT prix FROM vtest3");
+   $getarticle2->execute();
+   //$article2 = $getarticle2->fetch();
+   $article2 = $getarticle2->fetchAll();
+           
+  
+
+
+
+
+   //affichage 2
+$getarticle = $db->prepare("SELECT nom,description,categorie FROM article");
 $getarticle->execute();
 $article = $getarticle->fetchAll();
  
@@ -49,7 +81,7 @@ $article = $getarticle->fetchAll();
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
       
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">Price Comparator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -90,7 +122,14 @@ $article = $getarticle->fetchAll();
                <!-- /.col-lg-3 -->
         <div class="col-lg-12">
          <div class="row">
-          <?php foreach($article as $article){ ?>
+
+          <?php 
+          $k=0;
+          
+          foreach($article as $article){
+            
+            ?>
+           
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-150">
@@ -99,7 +138,27 @@ $article = $getarticle->fetchAll();
                   <h4 class="card-title">
                     <a href="#"><?php echo $article['nom'];?></a> <button type="button" class="btn spacing  btn-primary btn-md" data-toggle="modal" data-target="#create-item"> Ajouter Prix/Qte <i class="fa fa-plus" aria-hidden="true"></i></button>
                   </h4>
-                  <h5>$Price</h5>
+                  <h5>
+                 
+                    
+                  <?php  
+               //   print_r($article2);
+                //  echo count($article2);
+              //    for($i=0;$i<count($article2);$i++){
+               
+                    
+                  echo $article2[$k++][0];
+           
+               //   }
+                  
+                  
+                 ?>
+                
+                    
+                  
+                  
+                  
+                   DT </h5>
                   <p class="card-text"><?php echo $article['description'];?></p>
                 </div>
                 <div class="card-footer">
@@ -126,25 +185,23 @@ $article = $getarticle->fetchAll();
 		        
 		      </div>
 		      <div class="modal-body">
-		      		<form data-toggle="validator" >
+		      		<form data-toggle="validator" action="index.php" method="post" >
 		      			<div class="form-group">
-							<label class="control-label" for="title">Nom:</label>
-							<input type="text" id="tit" name="title" class="form-control" data-error="Please enter title." required />
+							<label class="control-label" for="title">Prix:</label>
+							<input type="text" id="prix" name="prix" class="form-control" data-error="Please enter title." required />
 							<div class="help-block with-errors"></div>
 						</div>
 
-						<div class="form-group">
-							<label class="control-label" for="description">Description:</label>
-							<textarea  id="des" name="description" class="form-control" data-error="Please enter description." required></textarea>
-							<div class="help-block with-errors"></div>
-						</div>
+					
             <div class="form-group">
-							<label class="control-label" for="categorie">Entrez une catégorie:</label>
-							<input type="text" id="cat" name="categorie" class="form-control" data-error="Please enter a category." required />
-							<div class="help-block with-errors"></div>
-						</div>
+            <label class="control-label" for="title">Quantité:</label>
+            <input type="text" id="qte" name="qte" class="form-control" data-error="Please enter title." required />
+            <div class="help-block with-errors"></div>
+          </div>
+         
           		<div class="form-group">
-							<button type="button" class="btn btn-success" onclick="Ajaxarticle();">Submit</button></div>
+							<button type="submit" class="btn btn-success" name="sub">Submit</button>
+              </div>
 		      		</form>
 		      </div>
 		    </div>
@@ -155,7 +212,7 @@ $article = $getarticle->fetchAll();
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; LFSI 3B 2017</p>
       </div>
       <!-- /.container -->
     </footer>
@@ -165,4 +222,3 @@ $article = $getarticle->fetchAll();
   </body>
 
 </html>
-

@@ -17,4 +17,4 @@ $data = $result->fetch();
 
 echo json_encode($data);
 //header("refresh:0;url=../../adminpanel/article.php");
-?>
+?> 
