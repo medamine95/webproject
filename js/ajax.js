@@ -61,7 +61,7 @@ var vrpos=0;
          document.getElementById("tit").innerHTML="";
          document.getElementById("des").innerHTML="";
          toastr.success(array[0][1], 'Article Ajouté avec succès', {timeOut: 5000});
-         
+         window.setTimeout(function(){location.reload()},2000);
         }
       };
       xhttp.open("GET", "http://localhost/webproject/database/CRUD/ARTICLE/addarticle.php?title="+$('#tit').val()+"&description="+$('#des').val()+"&categorie="+$('#cat').val(), true);
