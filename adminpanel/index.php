@@ -75,7 +75,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!--     <script src="../js/search.js"></script>   -->
     
         <script src="../js/jquery.min.js"></script> 
-  
+
+
+
+  <!-- Search box supresser -->
     <script>
     $(document).ready(function(){
 	$("#search-box").keyup(function(){
@@ -104,31 +107,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
     });
 });
 //select change to get click
- /*
-$("#country-list").on("keydown", function() {
-  alert($("#country-list").val());
-   /* var value = $(this).val().toLowerCase();
-    $("#myList li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });*/
+
+
+
 });
 //To select country name
 function selectname(val) {
- // alert(val);
+
 $("#search-box").val(val);
 $("#suggesstion-box").hide();
 
+    var value = $("#search-box").val().toLowerCase();
+   
+  $("#usertable tr").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
+
+
 }
-
-
 
 </script>
     <?php
         include($_SERVER['DOCUMENT_ROOT'].'/webproject/adminpanel/searchbox.php');
         ?>
         
-
+<!-- Search box supresser end -->
         
       <script type="text/javascript" src="toastr.min.js"></script>
         <link rel="stylesheet" href="toastr.min.css">
@@ -268,10 +271,13 @@ desired effect
     </div>
     </form> 
  -->  
- <div class="frmSearch">
+ <!--search bar container -->
+ <div class="container">
+ <div class="frmSearch" >
 	<input type="text" id="search-box" placeholder="Saisir Votre Nom" size="25" />
 	<div id="suggesstion-box"></div>
 </div> 
+</div>
     <!-- Main content -->
     <section class="content container-fluid">
     

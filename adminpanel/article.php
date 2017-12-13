@@ -59,6 +59,71 @@ $article = $getarticle->fetchAll();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <style>
+
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+#country-list li:hover{background:#ece3d2;cursor: pointer;}
+#search-box{padding: 10px;border: #a8d4b1 1px solid;border-radius:4px;}
+</style>
+
+<!-- Search box supresser -->
+<script>
+    $(document).ready(function(){
+	$("#search-box").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "searchbox article.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+     // alert(data);
+     
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+  });
+  $("#search-box").on("keyup", function() {
+    
+    var value = $(this).val().toLowerCase();
+    $("#btid tr").filter(function() {
+     
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+//select change to get click
+
+
+
+});
+//To select country name
+function selectname(val) {
+
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+
+    var value = $("#search-box").val().toLowerCase();
+   
+  $("#btid tr").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
+
+
+}
+
+</script>
+    <?php
+        include($_SERVER['DOCUMENT_ROOT'].'/webproject/adminpanel/searchbox article.php');
+        ?>
+        
+<!-- Search box supresser end -->
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -153,10 +218,21 @@ $article = $getarticle->fetchAll();
       </h1>
      
     </section>
+
+   <!--search bar container -->
+ 
+
     <!-- Main content -->
     <section class="content container-fluid">
+    
+ <div class="frmSearch" >
+	<input type="text" id="search-box" placeholder="Saisir le nom d'un article" size="25" />
+	<div id="suggesstion-box"></div>
+</div>
+    <br>
     <button type="button" class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#create-item"> Ajouter Un Article <i class="fa fa-plus" aria-hidden="true"></i></button>
     <hr>
+    
     <div class="box-body table-responsive no-padding"> 
     <table border="2px" class="table table-striped ">
 			<thead>
