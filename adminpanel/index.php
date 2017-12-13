@@ -87,18 +87,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
 		},
 		success: function(data){
+     // alert(data);
+     
 			$("#suggesstion-box").show();
 			$("#suggesstion-box").html(data);
 			$("#search-box").css("background","#FFF");
 		}
 		});
-	});
+  });
+  $("#search-box").on("keyup", function() {
+    
+    var value = $(this).val().toLowerCase();
+    $("#usertable tr").filter(function() {
+     
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+//select change to get click
+ /*
+$("#country-list").on("keydown", function() {
+  alert($("#country-list").val());
+   /* var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });*/
 });
 //To select country name
 function selectname(val) {
+ // alert(val);
 $("#search-box").val(val);
 $("#suggesstion-box").hide();
+
 }
+
+
+
 </script>
     <?php
         include($_SERVER['DOCUMENT_ROOT'].'/webproject/adminpanel/searchbox.php');
@@ -255,21 +279,24 @@ desired effect
 
     <div class="box-body table-responsive no-padding">
     
-              <table border="2px" class="table table-striped">
-     
-                <tbody><tr>
+              <table border="2px" class="table table-striped" >
+              <thead>
+                
                
                   <th>User</th>
                 
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+                </thead>
+                <tbody id="usertable">
+                
                 <?php 
                 $btid=0;//variable for the id of tr and approve
                  foreach ($users as $user) {   
                echo " <tr id=btid".$btid.">";
                 ?>
-                  <td><?php echo $user['nom'] . $user['prenom']; ?></td>
+                  <td><?php echo $user['nom'] ." ". $user['prenom']; ?></td>
                <?php 
                $state=$user['state'];
                $class1="label label-success";  //Approved
@@ -289,8 +316,9 @@ desired effect
                   <td><button type="button" class="btn  btn-success btn-lg"  onclick="AjaxvalidUSER(<?php echo $user['id'] ?>,<?php ++$btid; echo $btid; ?>)"><i class="fa fa-check fa-1x" aria-hidden="true"></i></button></i></button>
                   <button type="button" class="btn  btn-danger btn-lg" onclick="AjaxrmUSER(<?php echo $user['id'] ?>,<?php  echo $btid; ?>)"><i class="fa fa-trash-o fa-1x " aria-hidden="true"></i></td>
                 </button></i></button></tr>
-              </tbody>
+              
       <?php  }   ?>
+      </tbody>
               </table>
             </div>
               

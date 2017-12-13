@@ -52,8 +52,12 @@ var vrpos=0;
        
           var array = JSON.parse("[" + this.responseText+ "]");
           
-              temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>)\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\"></i>DELETE </button>  ';
-               document.getElementById("btid").insertAdjacentHTML('afterbegin', "<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>");
+          
+          //temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>)\"><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\"  > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php echo $atid; ?>);Ajaxrmarticle();\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\" ></i>DELETE </button>  ';
+          temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" onclick=\"ini('+vrid+','+vrpos+')\"><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\"  > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" onclick=\"ini('+vrid+','+vrpos+');Ajaxrmarticle();\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\" ></i>DELETE </button>  ';
+         // temp="";
+        //alert (vrid+' , '+vrpos);
+          document.getElementById("btid").insertAdjacentHTML('afterbegin', "<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>");
          document.getElementById("tit").innerHTML="";
          document.getElementById("des").innerHTML="";
          toastr.success(array[0][1], 'Article Ajouté avec succès', {timeOut: 5000});
@@ -78,10 +82,11 @@ var vrpos=0;
           var array = JSON.parse("[" + this.responseText+ "]");
           
            
-          temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>)\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php ++$atid; echo $atid; ?>);Ajaxrmarticle();\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\" ></i>DELETE </button>  ';
+          temp= '<button type=\"button\" class=\"btn  btn-info \" data-toggle=\"modal\" data-target=\"#edit-item\" ><i class=\"fa fa-check fa-1x\" aria-hidden=\"true\" onclick=\"ini('+vrid+','+vrpos+')\" > </i> EDIT </button>   <button type=\"button\" class=\"btn  btn-danger\" onclick=\"ini(<?php echo $article[\'id\'] ?>,<?php echo $atid; ?>);Ajaxrmarticle();\" ><i class=\"fa fa-trash-o fa-1x \" aria-hidden=\"true\" ></i>DELETE </button>  ';
+        // temp="";
           // document.getElementById(btid).insertAdjacentHTML('afterbegin', "<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>");
           document.getElementById("atid"+vrpos).innerHTML="<tr>  <td>"+array[0][0]+"</td> <td>"+array[0][1]+"</td> <td>"+array[0][2]+"</td> <td>"+array[0][3]+"</td><td>"+array[0][4]+"</td> <td>"+array[0][5]+"</td><td>"+temp+"</td></tr>";
-           
+          //alert (vrid+' , '+vrpos);
           // document.getElementById("atid"+vrpos).innerHTML("r");
         //  document.getElementById("btid").innerHTML="";
              toastr.success(array[0][1], 'Article modifié avec succés', {timeOut: 5000});
